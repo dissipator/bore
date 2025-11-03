@@ -70,7 +70,7 @@ async fn run(command: Command) -> Result<()> {
             port,
             secret,
         } => {
-            let client = Client::new(&local_host, local_port, &to, port, secret.as_deref()).await?;
+            let client = Client::new(&local_host, local_port, &to, server_port, port, secret.as_deref()).await?;
             client.listen().await?;
         }
         Command::Server {
