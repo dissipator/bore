@@ -18,6 +18,9 @@ pub struct Client {
     /// Destination address of the server.
     to: String,
 
+    /// Server control port
+    server_port: u16,
+
     // Local host that is forwarded.
     local_host: String,
 
@@ -37,10 +40,12 @@ impl Client {
         local_host: &str,
         local_port: u16,
         to: &str,
+        server_port: Option<u16>, // 增加server_port参数
         port: u16,
         secret: Option<&str>,
     ) -> Result<Self> {
-        let mut stream = Delimited::new(connect_with_timeout(to, CONTROL_PORT).await?);
+        let server_port = server_port.unwrap_or(CONTROL_PORT);
+        let mut stream = Delimited::new(connect_with_timeout(to, server_port).await?);
         let auth = secret.map(Authenticator::new);
         if let Some(auth) = &auth {
             auth.client_handshake(&mut stream).await?;
@@ -104,7 +109,7 @@ impl Client {
 
     async fn handle_connection(&self, id: Uuid) -> Result<()> {
         let mut remote_conn =
-            Delimited::new(connect_with_timeout(&self.to[..], CONTROL_PORT).await?);
+            Delimited::new(connect_with_timeout(&self.to[..], server_port).await?);
         if let Some(auth) = &self.auth {
             auth.client_handshake(&mut remote_conn).await?;
         }
