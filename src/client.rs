@@ -40,7 +40,7 @@ impl Client {
         local_host: &str,
         local_port: u16,
         to: &str,
-        server_port: u16, // 增加server_port参数
+        server_port: u16,
         port: u16,
         secret: Option<&str>,
     ) -> Result<Self> {
