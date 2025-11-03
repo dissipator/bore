@@ -40,7 +40,7 @@ impl Client {
         local_host: &str,
         local_port: u16,
         to: &str,
-        server_port: Option<u16>, // 增加server_port参数
+        server_port: u16, // 增加server_port参数
         port: u16,
         secret: Option<&str>,
     ) -> Result<Self> {
@@ -67,6 +67,7 @@ impl Client {
         Ok(Client {
             conn: Some(stream),
             to: to.to_string(),
+            server_port,
             local_host: local_host.to_string(),
             local_port,
             remote_port,
