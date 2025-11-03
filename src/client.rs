@@ -108,6 +108,7 @@ impl Client {
     }
 
     async fn handle_connection(&self, id: Uuid) -> Result<()> {
+        let server_port = server_port.unwrap_or(CONTROL_PORT);
         let mut remote_conn =
             Delimited::new(connect_with_timeout(&self.to[..], server_port).await?);
         if let Some(auth) = &self.auth {
