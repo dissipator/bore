@@ -28,6 +28,10 @@ enum Command {
         to: String,
 
         /// Optional port on the remote server to select.
+        #[clap(short, long, default_value_t = 7835)]
+        aerver_port: u16,
+
+        /// Optional port on the remote server to select.
         #[clap(short, long, default_value_t = 0)]
         port: u16,
 
