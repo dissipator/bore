@@ -66,7 +66,7 @@ jobs:
         with:
           toolchain: stable
           override: true
-          profile: minimal
+          profile: minimal 
           target: ${{ matrix.target }}
 
       - name: Build | Build
