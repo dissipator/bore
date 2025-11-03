@@ -20,7 +20,7 @@ jobs:
 
       - run: cargo build --all-features
 
-      - run: cargo test
+      - run: cargo test 
 
   rustfmt:
     name: Rustfmt
