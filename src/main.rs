@@ -67,6 +67,7 @@ async fn run(command: Command) -> Result<()> {
             local_host,
             local_port,
             to,
+            server_port,
             port,
             secret,
         } => {
