@@ -8,7 +8,7 @@ use tracing::{error, info, info_span, warn, Instrument};
 use uuid::Uuid;
 
 use crate::auth::Authenticator;
-use crate::shared::{ClientMessage, Delimited, ServerMessage, CONTROL_PORT, NETWORK_TIMEOUT};
+use crate::shared::{ClientMessage, Delimited, ServerMessage, NETWORK_TIMEOUT};
 
 /// State structure for the client.
 pub struct Client {
